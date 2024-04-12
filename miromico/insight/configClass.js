@@ -1,6 +1,6 @@
-/* globals navigator, $ */
+/* globals navigator, jQuery */
 
-$ = jQuery;
+if (!$) var $ = jQuery;
 export default class Configurator {
     constructor(containerId = null) {
         console.log('Configurator wird initialisiert');
