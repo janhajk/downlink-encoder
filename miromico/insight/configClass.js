@@ -80,10 +80,10 @@ export default class Configurator {
     }
 
     initUI() {
-        const heading = document.createElement('h2');
-        heading.className = 'mb-3';
-        heading.textContent = this.title;
-        this.container.appendChild(heading);
+        // const heading = document.createElement('h2');
+        // heading.className = 'mb-3';
+        // heading.textContent = this.title;
+        // this.container.appendChild(heading);
 
         const navTabs = document.createElement('ul');
         navTabs.className = 'nav nav-tabs';
