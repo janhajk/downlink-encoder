@@ -6,12 +6,14 @@ const TITLE = "Miromico Miro Insight Downlink Encoder";
 
 export default class Configurator {
     constructor(title = TITLE, containerId = null) {
+        console.log('Configurator wird initialisiert');
         if (!containerId) {
             this.container = document.createElement('div');
             this.container.className = 'container mt-5';
             document.body.appendChild(this.container);
         }
         else {
+            console.error('Container nicht gefunden:', containerId);
             this.container = document.getElementById(containerId);
         }
 
@@ -80,6 +82,9 @@ export default class Configurator {
     }
 
     initUI() {
+
+        console.log('initUI wird aufgerufen');
+
         // const heading = document.createElement('h2');
         // heading.className = 'mb-3';
         // heading.textContent = this.title;
