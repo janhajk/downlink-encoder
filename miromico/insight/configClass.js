@@ -1,4 +1,4 @@
-/* globals navigator, $ */
+/* globals navigator, jQuery */
 
 
 export default class Configurator {
@@ -96,8 +96,8 @@ export default class Configurator {
         });
 
         const self = this;
-        $('#configTabs').on('shown.bs.tab', 'button[data-bs-toggle="tab"]', function(event) {
-            const activeTabId = this.ariaControls || $(this).attr('aria-controls');
+        jQuery('#configTabs').on('shown.bs.tab', 'button[data-bs-toggle="tab"]', function(event) {
+            const activeTabId = this.ariaControls || jQuery(this).attr('aria-controls');
             const config = self.configurations.find(c => c.id === activeTabId);
             if (config) {
                 self.updateHexOutput(config);
@@ -115,10 +115,10 @@ export default class Configurator {
         tab.role = 'presentation';
 
         const tabLink = document.createElement('button');
-        tabLink.className = `nav-link ${index === 0 ? 'active' : ''}`;
-        tabLink.id = `${config.id}-tab`;
+        tabLink.className = `nav-link jQuery{index === 0 ? 'active' : ''}`;
+        tabLink.id = `jQuery{config.id}-tab`;
         tabLink.dataset.bsToggle = 'tab';
-        tabLink.dataset.bsTarget = `#${config.id}`;
+        tabLink.dataset.bsTarget = `#jQuery{config.id}`;
         tabLink.type = 'button';
         tabLink.role = 'tab';
         tabLink.ariaControls = config.id;
@@ -128,10 +128,10 @@ export default class Configurator {
         navTabs.appendChild(tab);
 
         const tabPane = document.createElement('div');
-        tabPane.className = `tab-pane fade ${index === 0 ? 'show active' : ''}`;
+        tabPane.className = `tab-pane fade jQuery{index === 0 ? 'show active' : ''}`;
         tabPane.id = config.id;
         tabPane.role = 'tabpanel';
-        tabPane.ariaLabelledby = `${config.id}-tab`;
+        tabPane.ariaLabelledby = `jQuery{config.id}-tab`;
         tabContent.appendChild(tabPane);
 
         this.createFormElements(tabPane, config);
@@ -146,13 +146,13 @@ export default class Configurator {
             const div = document.createElement('div');
             div.className = 'mb-3';
             const label = document.createElement('label');
-            label.htmlFor = `${config.id}-${input.id}`;
+            label.htmlFor = `jQuery{config.id}-jQuery{input.id}`;
             label.className = 'form-label';
             label.textContent = input.label;
             const inputElement = document.createElement('input');
             inputElement.type = input.type;
             inputElement.className = 'form-control';
-            inputElement.id = `${config.id}-${input.id}`;
+            inputElement.id = `jQuery{config.id}-jQuery{input.id}`;
             inputElement.value = input.default;
             div.appendChild(label);
             div.appendChild(inputElement);
@@ -163,13 +163,13 @@ export default class Configurator {
             const div = document.createElement('div');
             div.className = 'mb-3 form-check';
             const label = document.createElement('label');
-            label.htmlFor = `${config.id}-${checkbox.id}`;
+            label.htmlFor = `jQuery{config.id}-jQuery{checkbox.id}`;
             label.className = 'form-check-label';
             label.textContent = checkbox.label;
             const inputElement = document.createElement('input');
             inputElement.type = 'checkbox';
             inputElement.className = 'form-check-input';
-            inputElement.id = `${config.id}-${checkbox.id}`;
+            inputElement.id = `jQuery{config.id}-jQuery{checkbox.id}`;
             inputElement.checked = checkbox.default;
             div.appendChild(inputElement);
             div.appendChild(label);
@@ -237,11 +237,11 @@ export default class Configurator {
     updateHexOutput(config) {
         const values = {};
         config.inputs.forEach(input => {
-            const inputElement = document.getElementById(`${config.id}-${input.id}`);
+            const inputElement = document.getElementById(`jQuery{config.id}-jQuery{input.id}`);
             values[input.id] = inputElement ? inputElement.value : input.default;
         });
         config.checkboxes.forEach(checkbox => {
-            const checkboxElement = document.getElementById(`${config.id}-${checkbox.id}`);
+            const checkboxElement = document.getElementById(`jQuery{config.id}-jQuery{checkbox.id}`);
             values[checkbox.id] = checkboxElement ? checkboxElement.checked : checkbox.default;
         });
 
@@ -272,7 +272,7 @@ export default class Configurator {
             (reportInterval ? 1 : 0) << 3
         ).toString(16).padStart(2, '0');
         const retransmissionsHex = retransmissions.toString(16).padStart(2, '0');
-        return `06 87 ${measurementIntervalHex} ${sendCycleHex} ${flags} ${retransmissionsHex}`.toUpperCase().replace(/ /g, '');
+        return `06 87 jQuery{measurementIntervalHex} jQuery{sendCycleHex} jQuery{flags} jQuery{retransmissionsHex}`.toUpperCase().replace(/ /g, '');
     }
 
 
@@ -291,7 +291,7 @@ export default class Configurator {
         const abcCalibrationHexLE = abcCalibrationHex.match(/.{1,2}/g).reverse().join('');
 
         // Zusammenstellung des Hex-Strings nach dem vorgegebenen Format
-        return `07 81 0000 ${co2SubsamplesHexLE} ${abcCalibrationHexLE}`.toUpperCase().replace(/ /g, '');
+        return `07 81 0000 jQuery{co2SubsamplesHexLE} jQuery{abcCalibrationHexLE}`.toUpperCase().replace(/ /g, '');
     }
 
 
@@ -303,7 +303,7 @@ export default class Configurator {
         const magicNumberHex = "F98BD419";
 
         // Zusammenstellung des Hex-Strings nach dem vorgegebenen Format
-        return `06 84 ${magicNumberHex} ${resetDelayHex}`.toUpperCase().replace(/ /g, '');
+        return `06 84 jQuery{magicNumberHex} jQuery{resetDelayHex}`.toUpperCase().replace(/ /g, '');
     }
 
 
@@ -319,7 +319,7 @@ export default class Configurator {
         const reportIntervalHex = reportInterval.toString(16).padStart(8, '0').match(/.{1,2}/g).reverse().join('');
 
         // Zusammenstellung des Hex-Strings nach dem vorgegebenen Format
-        return `09 86 ${alarmTimeHex} ${debounceTimeHex} ${reportIntervalHex}`.toUpperCase().replace(/ /g, '');
+        return `09 86 jQuery{alarmTimeHex} jQuery{debounceTimeHex} jQuery{reportIntervalHex}`.toUpperCase().replace(/ /g, '');
     }
 
 
@@ -334,6 +334,6 @@ export default class Configurator {
         const humidityThresholdHex = humidityThreshold.toString(16).padStart(4, '0').match(/.{1,2}/g).reverse().join('');
 
         // Zusammenstellung des Hex-Strings nach dem vorgegebenen Format
-        return `07 88 ${co2ThresholdHex} ${tempThresholdHex} ${humidityThresholdHex}`.toUpperCase().replace(/ /g, '');
+        return `07 88 jQuery{co2ThresholdHex} jQuery{tempThresholdHex} jQuery{humidityThresholdHex}`.toUpperCase().replace(/ /g, '');
     }
 }
