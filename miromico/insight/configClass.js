@@ -4,14 +4,24 @@ if (!$) var $ = jQuery;
 export default class Configurator {
     constructor(containerId = null) {
         console.log('Configurator wird initialisiert');
-        if (!containerId) {
+        if (containerId) {
+            this.container = document.getElementById(containerId);
+            if (!this.container) {
+                console.error('Container nicht gefunden:', containerId);
+                this.container = document.createElement('div');
+                this.container.id = containerId; // Stellen Sie sicher, dass der neue Container die richtige ID hat
+                this.container.className = 'container mt-5';
+                document.body.appendChild(this.container);
+            }
+            else {
+                console.log('Verwendet vorhandenen Container:', containerId);
+            }
+        }
+        else {
+            // Erstellt einen Standard-Container, wenn keine ID bereitgestellt wird
             this.container = document.createElement('div');
             this.container.className = 'container mt-5';
             document.body.appendChild(this.container);
-        }
-        else {
-            console.error('Container nicht gefunden:', containerId);
-            this.container = document.getElementById(containerId);
         }
 
         this.configurations = [{
@@ -79,7 +89,8 @@ export default class Configurator {
 
     initUI() {
 
-        console.log('initUI wird aufgerufen');
+        // console.log('initUI wird aufgerufen');
+        this.container.innerHTML = '';
 
         const navTabs = document.createElement('ul');
         navTabs.className = 'nav nav-tabs';
