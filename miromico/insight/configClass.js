@@ -1,11 +1,8 @@
 /* globals navigator, $ */
 
-const TITLE = "Miromico Miro Insight Downlink Encoder";
-
-
 
 export default class Configurator {
-    constructor(title = TITLE, containerId = null) {
+    constructor(containerId = null) {
         console.log('Configurator wird initialisiert');
         if (!containerId) {
             this.container = document.createElement('div');
@@ -17,7 +14,6 @@ export default class Configurator {
             this.container = document.getElementById(containerId);
         }
 
-        this.title = title;
         this.configurations = [{
                 id: 'common',
                 title: 'Common Configuration',
@@ -84,11 +80,6 @@ export default class Configurator {
     initUI() {
 
         console.log('initUI wird aufgerufen');
-
-        // const heading = document.createElement('h2');
-        // heading.className = 'mb-3';
-        // heading.textContent = this.title;
-        // this.container.appendChild(heading);
 
         const navTabs = document.createElement('ul');
         navTabs.className = 'nav nav-tabs';
