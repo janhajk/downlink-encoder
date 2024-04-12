@@ -95,7 +95,7 @@ export default class Configurator {
         const navTabs = document.createElement('ul');
         navTabs.className = 'nav nav-tabs';
         navTabs.id = 'configTabs';
-        navTabs.styles.lineStyle = 'none !important';
+        navTabs.style.setProperty('list-style', 'none', 'important');
         this.container.appendChild(navTabs);
 
         const tabContent = document.createElement('div');
@@ -180,7 +180,7 @@ export default class Configurator {
             label.textContent = checkbox.label;
             const inputElement = document.createElement('input');
             inputElement.type = 'checkbox';
-            inputElement.styles.width = '15px !important';
+            inputElement.style.setProperty('width', '15px', 'important');
             inputElement.className = 'form-check-input';
             inputElement.id = `${config.id}-${checkbox.id}`;
             inputElement.checked = checkbox.default;
@@ -201,7 +201,7 @@ export default class Configurator {
         outputLabel.htmlFor = 'hexOutput';
         outputLabel.className = 'form-label';
         outputLabel.textContent = 'Generated Hex String:';
-        outputLabel.style.display = 'block'; // Stellen Sie sicher, dass das Label über dem Input angezeigt wird
+        outputLabel.style.display = 'block';
 
         const outputInputGroup = document.createElement('div');
         outputInputGroup.className = 'input-group';
