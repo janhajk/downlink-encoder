@@ -1,4 +1,4 @@
-import { LoRaWANConfigBase } from 'https://cdn.jsdelivr.net/gh/janhajk/downlink-encoder@v2.0.0/lib/base.js';
+import { LoRaWANConfigBase } from 'https://cdn.jsdelivr.net/gh/janhajk/downlink-encoder@v2.0.1/lib/base.js';
 
 export default class miroInsight extends LoRaWANConfigBase {
     constructor(containerId) {
