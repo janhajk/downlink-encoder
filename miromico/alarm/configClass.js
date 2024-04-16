@@ -40,7 +40,8 @@ export default class MiroDeviceConfig extends LoRaWANConfigBase {
                 },
                 inputs: [
                     { id: 'scene', label: 'Scene', type: 'number', default: 0 }
-                ]
+                ],
+                checkboxes: []
             },
             {
                 id: 'setBrightness',
@@ -51,7 +52,8 @@ export default class MiroDeviceConfig extends LoRaWANConfigBase {
                 },
                 inputs: [
                     { id: 'brightness', label: 'Brightness', type: 'number', default: 128 }
-                ]
+                ],
+                checkboxes: []
             },
             {
                 id: 'setVolume',
@@ -62,7 +64,8 @@ export default class MiroDeviceConfig extends LoRaWANConfigBase {
                 },
                 inputs: [
                     { id: 'volume', label: 'Volume', type: 'select', options: { 0: 'Off', 1: 'Low', 2: 'Medium', 3: 'High' }, default: 3 }
-                ]
+                ],
+                checkboxes: []
             },
             {
                 id: 'configureSceneLED',
@@ -82,7 +85,8 @@ export default class MiroDeviceConfig extends LoRaWANConfigBase {
                     { id: 'green', label: 'Green value', type: 'number', default: 154 },
                     { id: 'blue', label: 'Blue value', type: 'number', default: 0 },
                     { id: 'timeout', label: 'Timeout time of scene (minutes)', type: 'number', default: 10 }
-                ]
+                ],
+                checkboxes: []
             },
             {
                 id: 'configureSceneLEDBuzzer',
@@ -106,7 +110,8 @@ export default class MiroDeviceConfig extends LoRaWANConfigBase {
                     { id: 'timeout', label: 'Timeout time of scene (minutes)', type: 'number', default: 10 },
                     { id: 'melody', label: 'Melody', type: 'number', default: 3 },
                     { id: 'repeat', label: 'Repeat', type: 'checkbox', default: true }
-                ]
+                ],
+                checkboxes: []
             }
         ];
 
