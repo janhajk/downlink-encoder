@@ -22,12 +22,12 @@ export default class MiroDeviceConfig extends LoRaWANConfigBase {
                 inputs: [
                     { id: 'keepAliveInterval', label: 'Keep Alive Interval (minutes)', type: 'number', default: 10 },
                     { id: 'numberOfLEDs', label: 'Number of LEDs in ring', type: 'number', default: 16 },
-                    { id: 'automaticResetTime', label: 'Automatic reset time (hours)', type: 'number', default: 1 }
+                    { id: 'automaticResetTime', label: 'Automatic reset time (hours)', type: 'number', default: 1 },
+                    { id: 'lorawanClass', label: 'LoRaWAN Class', options: ['A', 'C'], type: 'select', default: 'A' },
                 ],
                 checkboxes: [
                     { id: 'confirmedUplinks', label: 'Confirmed Uplinks', default: false },
                     { id: 'dutyCycle', label: 'Duty Cycle', default: false },
-                    { id: 'lorawanClass', label: 'LoRaWAN Class', options: ['A', 'C'], type: 'select', default: 'A' },
                     { id: 'buzzer', label: 'Buzzer', default: false }
                 ]
             },
