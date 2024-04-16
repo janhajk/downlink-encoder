@@ -4,7 +4,7 @@ export default class R602B extends LoRaWANConfigBase {
     constructor(containerId) {
 
         const configurations = [{
-                id: 'alarmMode',
+                id: 'startWarningWithReq',
                 title: 'Start Warning',
                 function: (values) => {
                     const { mode, duration, ledIndication } = values;
@@ -15,17 +15,49 @@ export default class R602B extends LoRaWANConfigBase {
                         'Doorbell': '03',
                         'Mute': '04'
                     };
-                    const ledMode = ledIndication ? '01' : '00'; // '01' for LED on, '00' for off
+                    const ledModes = {
+                        'NoLedIndication': '00',
+                        'LedBlinkMode1': '01',
+                        'LedBlinkMode2': '02'
+                    };
+                    const ledMode = ledModes[ledIndication]; // Angenommen, 'ledIndication' ist nun ein Select-Feld mit den Werten 'NoLedIndication', 'LedBlinkMode1', 'LedBlinkMode2'
                     const durationHex = parseInt(duration).toString(16).padStart(4, '0').toUpperCase();
                     return `9069${modeCodes[mode]}${ledMode}${durationHex}0000000000`;
                 },
                 inputs: [
                     { id: 'mode', label: 'Alarm Mode', type: 'select', options: ['Fire', 'Emergency', 'Burglar', 'Doorbell', 'Mute'], default: 'Mute' },
-                    { id: 'duration', label: 'Warning Duration (seconds)', type: 'number', default: 10 }
+                    { id: 'duration', label: 'Warning Duration (seconds)', type: 'number', default: 10 },
+                    { id: 'ledIndication', label: 'LED Indication', type: 'select', options: ['NoLedIndication', 'LedBlinkMode1', 'LedBlinkMode2'], default: 'NoLedIndication' }
                 ],
-                checkboxes: [
-                    { id: 'ledIndication', label: 'LED Indication', default: true }
-                ]
+                checkboxes: []
+            },
+            {
+                id: 'startWarningWithAckReq',
+                title: 'Start Warning ACK',
+                function: (values) => {
+                    const { mode, duration, ledIndication } = values;
+                    const modeCodes = {
+                        'Fire': '00',
+                        'Emergency': '01',
+                        'Burglar': '02',
+                        'Doorbell': '03',
+                        'Mute': '04'
+                    };
+                    const ledModes = {
+                        'NoLedIndication': '00',
+                        'LedBlinkMode1': '01',
+                        'LedBlinkMode2': '02'
+                    };
+                    const ledMode = ledModes[ledIndication]; // Angenommen, 'ledIndication' ist nun ein Select-Feld mit den Werten 'NoLedIndication', 'LedBlinkMode1', 'LedBlinkMode2'
+                    const durationHex = parseInt(duration).toString(16).padStart(4, '0').toUpperCase();
+                    return `0369${modeCodes[mode]}${ledMode}${durationHex}0000000000`;
+                },
+                inputs: [
+                    { id: 'mode', label: 'Alarm Mode', type: 'select', options: ['Fire', 'Emergency', 'Burglar', 'Doorbell', 'Mute'], default: 'Mute' },
+                    { id: 'duration', label: 'Warning Duration (seconds)', type: 'number', default: 10 },
+                    { id: 'ledIndication', label: 'LED Indication', type: 'select', options: ['NoLedIndication', 'LedBlinkMode1', 'LedBlinkMode2'], default: 'NoLedIndication' }
+                ],
+                checkboxes: []
             },
             {
                 id: 'configReportReq',
@@ -51,32 +83,6 @@ export default class R602B extends LoRaWANConfigBase {
                 },
                 inputs: [],
                 checkboxes: []
-            },
-
-            // Adding 'Start Warning With Ack Req' command
-            {
-                id: 'startWarningWithAckReq',
-                title: 'Start Warning With Acknowledgement Request',
-                function: (values) => {
-                    const { mode, duration, ledIndication } = values;
-                    const modeCodes = {
-                        'Fire': '00',
-                        'Emergency': '01',
-                        'Burglar': '02',
-                        'Doorbell': '03',
-                        'Mute': '04'
-                    };
-                    const ledMode = ledIndication ? '01' : '00'; // '01' for LED on, '00' for off
-                    const durationHex = parseInt(duration).toString(16).padStart(4, '0').toUpperCase();
-                    return `0369${modeCodes[mode]}${ledMode}${durationHex}0000000000`;
-                },
-                inputs: [
-                    { id: 'mode', label: 'Alarm Mode', type: 'select', options: ['Fire', 'Emergency', 'Burglar', 'Doorbell', 'Mute'], default: 'Mute' },
-                    { id: 'duration', label: 'Warning Duration (seconds)', type: 'number', default: 10 }
-                ],
-                checkboxes: [
-                    { id: 'ledIndication', label: 'LED Indication', default: true }
-                ]
             },
         ];
 
