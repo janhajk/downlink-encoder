@@ -1,4 +1,4 @@
-import { LoRaWANConfigBase } from 'https://cdn.jsdelivr.net/gh/janhajk/downlink-encoder@v2.0.3/lib/base.js';
+import { LoRaWANConfigBase } from 'https://cdn.jsdelivr.net/gh/janhajk/downlink-encoder@v2.0.12/lib/base.js';
 
 export default class MiroDeviceConfig extends LoRaWANConfigBase {
     constructor(containerId) {
