@@ -17,5 +17,12 @@
 <script type="module">
     import Configurator from './configClass.js';
     const myConfigurator = new Configurator('encoder-container');
+
+    // Hinzufügen einer Info-Box unter dem Encoder-Container
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'alert alert-info mt-3 mx-auto'; // Bootstrap-Classes für Styling: Info-Alert, Margin top, zentriert
+    infoDiv.style.maxWidth = '600px'; // Optionale Breitenbeschränkung für besseres Aussehen
+    infoDiv.innerHTML = '<i class="fas fa-info-circle me-2"></i><strong>Important:</strong> All downlink messages must be sent on the LoRaWAN Port 3!'; // FontAwesome-Icon und Text
+    document.body.appendChild(infoDiv); // Anhängen an den Body, erscheint unter dem Container
 </script>
 </html>
